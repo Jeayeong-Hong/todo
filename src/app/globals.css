@@ -886,10 +886,11 @@ img {
   }
 
   .search-container {
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
     margin-bottom: 32px;
-    gap: 10px;
+    gap: 12px;
+    align-items: center;
   }
 
   .search-field {
@@ -900,6 +901,10 @@ img {
 
   .search-input {
     font-size: 15px;
+  }
+
+  .btn-add-mobile {
+    flex-shrink: 0;
   }
 
   .btn-add-default,
@@ -963,10 +968,11 @@ img {
   }
 
   .search-container {
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
     margin-bottom: 24px;
     gap: 8px;
+    align-items: center;
   }
 
   .search-field {
@@ -978,6 +984,10 @@ img {
 
   .search-input {
     font-size: 14px;
+  }
+
+  .btn-add-mobile {
+    flex-shrink: 0;
   }
 
   .btn-add-default,
