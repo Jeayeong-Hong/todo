@@ -112,14 +112,13 @@ export default function Home() {
             />
           </div>
           <ImageButton
-            imageSrc=""
-            imageAlt="추가하기"
             className={isMobile
               ? isAddButtonActive ? "btn-add-small-active" : "btn-add-small-default"
               : isAddButtonActive ? "btn-add-active" : "btn-add-default"}
             onClick={handleAddItem}
             disabled={isSubmitting || !isAddButtonActive}
           >
+            <img src="/icon/add_btn_plus.svg" alt="" />
             {!isMobile && "추가하기"}
           </ImageButton>
         </div>

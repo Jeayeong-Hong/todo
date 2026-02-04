@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { TodoItem } from "../lib/types";
 
 interface TodoListItemProps {
@@ -15,7 +16,15 @@ export default function TodoListItem({ item, onToggle }: TodoListItemProps) {
                 type="button"
                 aria-label={item.isCompleted ? "완료 해제" : "완료"}
                 onClick={() => onToggle(item)}
-            />
+            >
+                <Image
+                    src={item.isCompleted ? "/icon/cheackbox_Active.svg" : "/icon/cheackbox_Default.svg"}
+                    alt=""
+                    width={28}
+                    height={28}
+                    style={{ width: 'auto', height: 'auto' }}
+                />
+            </button>
             <Link className="todo-title" href={`/items/${item.id}`}>
                 {item.name}
             </Link>

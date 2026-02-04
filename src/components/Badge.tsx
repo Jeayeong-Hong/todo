@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
 
 interface BadgeProps {
     tone?: "todo" | "done";
@@ -9,21 +8,15 @@ interface BadgeProps {
 
 // 공용 배지 컴포넌트
 export default function Badge({ tone = "todo" }: BadgeProps) {
-    const isMobile = useMediaQuery({ maxWidth: 768 });
-
-    const imageSrc = tone === "todo"
-        ? (isMobile ? "/img/todo_mobile.png" : "/img/todo.png")
-        : (isMobile ? "/img/done_mobile.png" : "/img/done.png");
+    const width = tone === "todo" ? 101 : 97;
 
     return (
-        <div className="badge">
-            <Image
-                src={imageSrc}
-                alt={tone === "todo" ? "TODO" : "DONE"}
-                width={isMobile ? 100 : 150}
-                height={40}
-                style={{ width: 'auto', height: 'auto' }}
-            />
-        </div>
+        <Image
+            src={tone === "todo" ? "/Img/todo.svg" : "/Img/done.svg"}
+            alt={tone === "todo" ? "TODO" : "DONE"}
+            width={width}
+            height={36}
+            style={{ width: `${width}px`, height: '36px', marginBottom: '12px' }}
+        />
     );
 }

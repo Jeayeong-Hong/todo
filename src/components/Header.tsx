@@ -10,7 +10,7 @@ export default function Header() {
     return (
         <header className="header">
             <Image
-                src={isMobile ? "/img/top_cha_mobile.png" : "/img/top_cha.png"}
+                src={isMobile ? "/Img/top_cha.svg" : "/Img/top_cha.svg"}
                 alt="do it ;"
                 width={isMobile ? 60 : 120}
                 height={isMobile ? 45 : 90}

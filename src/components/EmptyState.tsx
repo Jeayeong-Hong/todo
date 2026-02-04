@@ -12,18 +12,25 @@ export default function EmptyState({ type }: EmptyStateProps) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const imageSrc = type === "todo"
-        ? (isMobile ? "/img/Todo_Empty_mobile.png" : "/img/Todo_Empty.png")
-        : (isMobile ? "/img/Done_Empty_mobile.png" : "/img/Done_Empty.png");
+        ? (isMobile ? "/Img/Todo_Empty.svg" : "/Img/Todo_Empty.svg")
+        : (isMobile ? "/Img/Done_Empty.svg" : "/Img/Done_Empty.svg");
+
+    const emptyText = type === "todo"
+        ? "할 일이 없어요.\nTODO를 새롭게 추가해주세요!"
+        : "아직 다 한 일이 없어요.\n해야 할 일을 체크해보세요!";
 
     return (
         <div className="empty-state">
             <Image
                 src={imageSrc}
                 alt={type === "todo" ? "할 일이 없어요" : "다 한 일이 없어요"}
-                width={isMobile ? 200 : 300}
-                height={isMobile ? 150 : 200}
+                width={isMobile ? 240 : 240}
+                height={isMobile ? 120 : 120}
                 style={{ width: 'auto', height: 'auto' }}
             />
+            <div className="empty-text-description">
+                {emptyText}
+            </div>
         </div>
     );
 }

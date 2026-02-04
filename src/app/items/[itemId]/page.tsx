@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { ImageButton } from "../../../components/Button";
 import Header from "../../../components/Header";
@@ -137,19 +138,25 @@ export default function ItemDetailPage() {
                 ) : (
                     <>
                         {/* 상단 바 - 할 일 제목 */}
-                        <div className="detail-bar">
-                            <label className="toggle-checkbox">
-                                <input
-                                    id="item-status"
-                                    type="checkbox"
-                                    checked={isCompleted}
-                                    onChange={(event) => setIsCompleted(event.target.checked)}
+                        <div className={`detail-bar ${isCompleted ? "detail-bar-done" : ""}`}>
+
+                            <button
+                                className={`check-button ${isCompleted ? "check-button-on" : ""}`}
+                                type="button"
+                                aria-label={isCompleted ? "완료 해제" : "완료"}
+                                onClick={() => setIsCompleted(!isCompleted)}
+                            >
+                                <Image
+                                    src={isCompleted ? "/icon/cheackbox_Active.svg" : "/icon/cheackbox_Default.svg"}
+                                    alt=""
+                                    width={28}
+                                    height={28}
+                                    style={{ width: 'auto', height: 'auto' }}
                                 />
-                            </label>
-                            <TextInput
+                            </button>
+                            <input
                                 id="item-name"
-                                fullWidth
-                                className="detail-title-input"
+                                className="detail-bar-input"
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
                                 placeholder="할 일을 입력해 주세요"
@@ -168,30 +175,35 @@ export default function ItemDetailPage() {
                                     onChange={handleImageChange}
                                     disabled={isUploading}
                                 />
-                                {isUploading && <p className="empty-description">업로드 중...</p>}
                                 {imageUrl ? (
                                     <div className="image-preview-large">
                                         <img src={imageUrl} alt="첨부 이미지" />
-                                        <ImageButton
-                                            imageSrc=""
-                                            imageAlt="이미지 수정"
-                                            className="image-edit-btn-overlay btn-img-edit"
+                                        <button
+                                            className="img-edit-btn"
                                             onClick={() => {
                                                 const input = document.getElementById("item-image");
                                                 if (input instanceof HTMLInputElement) {
                                                     input.click();
                                                 }
                                             }}
-                                        />
+                                        >
+                                            <img src="/icon/img_edit.svg" alt="이미지 수정" />
+                                        </button>
                                     </div>
                                 ) : (
-                                    <div className="image-placeholder-large" onClick={() => {
-                                        const input = document.getElementById("item-image");
-                                        if (input instanceof HTMLInputElement) {
-                                            input.click();
-                                        }
-                                    }}>
-                                        <img src="/img/img.png" alt="이미지 추가" className="placeholder-img" />
+                                    <div className="image-placeholder-large">
+                                        <img src="/Img/img.svg" alt="이미지 추가" className="placeholder-img" />
+                                        <button
+                                            className="img-plus-btn"
+                                            onClick={() => {
+                                                const input = document.getElementById("item-image");
+                                                if (input instanceof HTMLInputElement) {
+                                                    input.click();
+                                                }
+                                            }}
+                                        >
+                                            <img src="/icon/img_plus.svg" alt="이미지 추가" />
+                                        </button>
                                     </div>
                                 )}
                             </div>
@@ -199,7 +211,7 @@ export default function ItemDetailPage() {
                             {/* 오른쪽: 메모 영역 */}
                             <div className="detail-memo-section">
                                 <div className="memo-container">
-                                    <img src="/img/memo.png" alt="Memo" className="memo-background" />
+                                    <img src="/Img/memo.svg" alt="Memo" className="memo-background" />
                                     <div className="memo-title">Memo</div>
                                     <textarea
                                         id="item-memo"
@@ -213,21 +225,19 @@ export default function ItemDetailPage() {
                                 {/* 버튼 영역 - 우측 정렬 */}
                                 <div className="detail-actions-right">
                                     <ImageButton
-                                        imageSrc=""
-                                        imageAlt="수정 완료"
                                         className={isEditButtonActive ? "btn-edit-active" : "btn-edit-default"}
                                         onClick={handleSave}
                                         disabled={isSaving || !isEditButtonActive}
                                     >
+                                        <img src="/icon/check.svg" alt="" />
                                         수정완료
                                     </ImageButton>
                                     <ImageButton
-                                        imageSrc=""
-                                        imageAlt="삭제하기"
                                         className="btn-delete"
                                         onClick={handleDelete}
                                         disabled={isSaving}
                                     >
+                                        <img src="/icon/X.svg" alt="" />
                                         삭제하기
                                     </ImageButton>
                                 </div>
