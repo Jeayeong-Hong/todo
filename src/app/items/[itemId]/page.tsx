@@ -173,11 +173,9 @@ export default function ItemDetailPage() {
                                     <div className="image-preview-large">
                                         <img src={imageUrl} alt="첨부 이미지" />
                                         <ImageButton
-                                            imageSrc="/btn/ImgEdit.png"
+                                            imageSrc=""
                                             imageAlt="이미지 수정"
-                                            imageWidth={40}
-                                            imageHeight={40}
-                                            className="image-edit-btn-overlay"
+                                            className="image-edit-btn-overlay btn-img-edit"
                                             onClick={() => {
                                                 const input = document.getElementById("item-image");
                                                 if (input instanceof HTMLInputElement) {
@@ -215,21 +213,23 @@ export default function ItemDetailPage() {
                                 {/* 버튼 영역 - 우측 정렬 */}
                                 <div className="detail-actions-right">
                                     <ImageButton
-                                        imageSrc={`/btn/Edit(${isEditButtonActive ? "A" : "D"}).png`}
+                                        imageSrc=""
                                         imageAlt="수정 완료"
-                                        imageWidth={56}
-                                        imageHeight={56}
+                                        className={isEditButtonActive ? "btn-edit-active" : "btn-edit-default"}
                                         onClick={handleSave}
                                         disabled={isSaving || !isEditButtonActive}
-                                    />
+                                    >
+                                        수정완료
+                                    </ImageButton>
                                     <ImageButton
-                                        imageSrc="/btn/Delete-btn.png"
+                                        imageSrc=""
                                         imageAlt="삭제하기"
-                                        imageWidth={56}
-                                        imageHeight={56}
+                                        className="btn-delete"
                                         onClick={handleDelete}
                                         disabled={isSaving}
-                                    />
+                                    >
+                                        삭제하기
+                                    </ImageButton>
                                 </div>
                             </div>
                         </div>

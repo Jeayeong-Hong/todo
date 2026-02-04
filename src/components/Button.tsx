@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -26,26 +25,22 @@ export default function Button({
   );
 }
 
-// 이미지 버튼 컴포넌트
+// 이미지 버튼 컴포넌트 - CSS 기반 스타일링
 export function ImageButton({
   imageSrc,
   imageAlt,
   imageWidth = 56,
   imageHeight = 56,
   className,
+  children,
   ...props
-}: ImageButtonProps) {
+}: ImageButtonProps & { children?: React.ReactNode }) {
   return (
     <button
       {...props}
       className={["image-btn", className].filter(Boolean).join(" ")}
     >
-      <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={imageWidth}
-        height={imageHeight}
-      />
+      {children}
     </button>
   );
 }

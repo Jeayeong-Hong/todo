@@ -112,16 +112,16 @@ export default function Home() {
             />
           </div>
           <ImageButton
-            imageSrc={isMobile
-              ? `/btn/Add-btn-small(${isAddButtonActive ? "A" : "D"}).png`
-              : `/btn/Add-btn(${isAddButtonActive ? "A" : "D"}).png`
-            }
+            imageSrc=""
             imageAlt="추가하기"
-            imageWidth={isMobile ? 46 : 168}
-            imageHeight={56}
+            className={isMobile
+              ? isAddButtonActive ? "btn-add-small-active" : "btn-add-small-default"
+              : isAddButtonActive ? "btn-add-active" : "btn-add-default"}
             onClick={handleAddItem}
             disabled={isSubmitting || !isAddButtonActive}
-          />
+          >
+            {!isMobile && "추가하기"}
+          </ImageButton>
         </div>
 
         {error && <p className="error-text">{error}</p>}
