@@ -485,6 +485,27 @@ img {
   filter: brightness(0) invert(1);
 }
 
+/* 모바일 추가 버튼 - 이미지 버튼 */
+.btn-add-mobile {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.btn-add-mobile:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.btn-add-mobile:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 /* ===== DELETE BUTTON ===== */
 /* Delete 버튼 - 빨간색 */
 .btn-delete {

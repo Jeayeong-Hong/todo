@@ -2,6 +2,7 @@
 
 import { KeyboardEvent, useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import Image from "next/image";
 import Badge from "../components/Badge";
 import { ImageButton } from "../components/Button";
 import EmptyState from "../components/EmptyState";
@@ -111,31 +112,45 @@ export default function Home() {
               onKeyDown={handleEnter}
             />
           </div>
-          <ImageButton
-            className={isMobile
-              ? isAddButtonActive ? "btn-add-small-active" : "btn-add-small-default"
-              : isAddButtonActive ? "btn-add-active" : "btn-add-default"}
-            onClick={handleAddItem}
-            disabled={isSubmitting || !isAddButtonActive}
-          >
-            {/* +icon색상 변경 */}
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
+          {isMobile ? (
+            <button
+              className="btn-add-mobile"
+              onClick={handleAddItem}
+              disabled={isSubmitting || !isAddButtonActive}
+              aria-label="할 일 추가"
             >
-              <path
-                d="M12 5v14M5 12h14"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
+              <Image
+                src={isAddButtonActive ? "/Img/Add-btn-Active-mobile.svg" : "/Img/Add-btn-Defalt-mobile.svg"}
+                alt="추가"
+                width={56}
+                height={56}
+                style={{ width: '56px', height: '56px' }}
               />
-            </svg>
-
-            {!isMobile && "추가하기"}
-          </ImageButton>
+            </button>
+          ) : (
+            <ImageButton
+              className={isAddButtonActive ? "btn-add-active" : "btn-add-default"}
+              onClick={handleAddItem}
+              disabled={isSubmitting || !isAddButtonActive}
+            >
+              {/* +icon색상 변경 */}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 5v14M5 12h14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              추가하기
+            </ImageButton>
+          )}
         </div>
 
         {error && <p className="error-text">{error}</p>}
