@@ -12,10 +12,10 @@ export default function Header() {
         <header className="header">
             <Link href="/" style={{ cursor: 'pointer' }}>
                 <Image
-                    src={isMobile ? "/Img/top_cha.svg" : "/Img/top_cha.svg"}
+                    src={isMobile ? "/Img/top_cha_mobile.svg" : "/Img/top_cha.svg"}
                     alt="do it ;"
-                    width={isMobile ? 60 : 120}
-                    height={isMobile ? 45 : 90}
+                    width={isMobile ? 71 : 120}
+                    height={isMobile ? 40 : 68}
                     style={{ width: 'auto', height: 'auto' }}
                 />
             </Link>
